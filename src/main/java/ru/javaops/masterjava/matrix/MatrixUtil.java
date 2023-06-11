@@ -4,10 +4,6 @@ import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
-/**
- * gkislin
- * 03.07.2016
- */
 public class MatrixUtil {
 
     // TODO implement parallel multiplication matrixA*matrixB
@@ -18,7 +14,6 @@ public class MatrixUtil {
         return matrixC;
     }
 
-    // TODO optimize by https://habrahabr.ru/post/114797/
     public static int[][] singleThreadMultiply(int[][] matrixA, int[][] matrixB) {
         final int matrixSize = matrixA.length;
         final int[][] matrixC = new int[matrixSize][matrixSize];
@@ -28,6 +23,34 @@ public class MatrixUtil {
                 int sum = 0;
                 for (int k = 0; k < matrixSize; k++) {
                     sum += matrixA[i][k] * matrixB[k][j];
+                }
+                matrixC[i][j] = sum;
+            }
+        }
+        return matrixC;
+    }
+
+    // optimized by https://habrahabr.ru/post/114797/
+    public static int[][] singleThreadMultiplyQuick(int[][] matrixA, int[][] matrixB) {
+        final int matrixSize = matrixA.length;
+        final int[][] matrixC = new int[matrixSize][matrixSize];
+
+        int[][] transB = new int[matrixSize][matrixSize];
+        for (int i = 0; i < matrixSize; i++) {
+            for (int j = 0; j < matrixSize; j++) {
+                transB[j][i] = matrixB[i][j];
+            }
+        }
+
+        int[] cashA;
+        int[] cashB;
+        for (int i = 0; i < matrixSize; i++) {
+            cashA = matrixA[i];
+            for (int j = 0; j < matrixSize; j++) {
+                int sum = 0;
+                cashB = transB[j];
+                for (int k = 0; k < matrixSize; k++) {
+                    sum += cashA[k] * cashB[k];
                 }
                 matrixC[i][j] = sum;
             }
