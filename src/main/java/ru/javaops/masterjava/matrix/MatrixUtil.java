@@ -44,15 +44,39 @@ public class MatrixUtil {
 
         int[] cashA;
         int[] cashB;
+        int[] cashC;
         for (int i = 0; i < matrixSize; i++) {
             cashA = matrixA[i];
+            cashC = matrixC[i];
             for (int j = 0; j < matrixSize; j++) {
                 int sum = 0;
                 cashB = transB[j];
                 for (int k = 0; k < matrixSize; k++) {
                     sum += cashA[k] * cashB[k];
                 }
-                matrixC[i][j] = sum;
+                cashC[j] = sum;
+            }
+        }
+        return matrixC;
+    }
+
+    public static int[][] singleThreadMultiplyQuick2(int[][] matrixA, int[][] matrixB) {
+        final int matrixSize = matrixA.length;
+        final int[][] matrixC = new int[matrixSize][matrixSize];
+
+        int[] cashA;
+        int[] cashB = new int[matrixSize];
+        for (int col = 0; col < matrixSize; col++) {
+            for (int k = 0; k < matrixSize; k++) {
+                cashB[k] = matrixB[k][col];
+            }
+            for (int row = 0; row < matrixSize; row++) {
+                cashA = matrixA[row];
+                int sum = 0;
+                for (int k = 0; k < matrixSize; k++) {
+                    sum += cashA[k] * cashB[k];
+                }
+                matrixC[row][col] = sum;
             }
         }
         return matrixC;
