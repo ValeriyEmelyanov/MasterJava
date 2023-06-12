@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 
 public class MainMatrix {
     private static final int MATRIX_SIZE = 1000;
-    private static final int THREAD_NUMBER = 10;
+    private static final int THREAD_NUMBER = Runtime.getRuntime().availableProcessors() > 2 ? Runtime.getRuntime().availableProcessors() - 2 : 1;
 
     private final static ExecutorService executor = Executors.newFixedThreadPool(MainMatrix.THREAD_NUMBER);
 
@@ -50,16 +50,16 @@ public class MainMatrix {
                 break;
             }
 
-//            start = System.currentTimeMillis();
-//            final int[][] concurrentMatrixC = MatrixUtil.concurrentMultiply(matrixA, matrixB, executor);
-//            duration = (System.currentTimeMillis() - start) / 1000.;
-//            out("Concurrent thread time, sec: %.3f", duration);
-//            concurrentThreadSum += duration;
-//
-//            if (!MatrixUtil.compare(matrixTemplate, concurrentMatrixC)) {
-//                System.err.println("Comparison failed");
-//                break;
-//            }
+            start = System.currentTimeMillis();
+            final int[][] concurrentMatrixC = MatrixUtil.concurrentMultiply(matrixA, matrixB, executor);
+            duration = (System.currentTimeMillis() - start) / 1000.;
+            out("Concurrent thread time, sec: %.3f", duration);
+            concurrentThreadSum += duration;
+
+            if (!MatrixUtil.compare(matrixTemplate, concurrentMatrixC)) {
+                System.err.println("Comparison failed");
+                break;
+            }
 
             count++;
         }
@@ -67,7 +67,7 @@ public class MainMatrix {
         out("\nAverage reference single thread time, sec: %.3f", singleTemplateThreadSum / 5.);
         out("Average single thread time, sec: %.3f", singleThreadSum / 5.);
         out("Average single thread time (2), sec: %.3f", singleThreadSum2 / 5.);
-//        out("Average concurrent thread time, sec: %.3f", concurrentThreadSum / 5.);
+        out("Average concurrent thread time, sec: %.3f", concurrentThreadSum / 5.);
     }
 
     private static void out(String format, double ms) {
