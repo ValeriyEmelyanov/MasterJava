@@ -14,6 +14,13 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
+                <xs:element name="Projects">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                            <xs:element ref="Project"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="Users">
                     <xs:complexType>
                         <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -53,4 +60,35 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
+
+    <xs:element name="Project" type="projectType"/>
+
+    <xs:complexType name="projectType">
+        <xs:sequence>
+                <xs:element type="xs:string" name="description"/>
+                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="Group"/>
+                </xs:sequence>
+        </xs:sequence>
+        <xs:attribute type="xs:ID" name="name" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="Group" type="groupType"/>
+
+    <xs:complexType name="groupType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:ID" name="name" use="required"/>
+                <xs:attribute type="typeOfGroup" name="type" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:simpleType name="typeOfGroup">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="REGISTERING"/>
+            <xs:enumeration value="CURRENT"/>
+            <xs:enumeration value="FINISHED"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
