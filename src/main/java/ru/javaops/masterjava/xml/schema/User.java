@@ -21,11 +21,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="fullName" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="flag" use="required" type="{http://javaops.ru}flagType" /&gt;
  *       &lt;attribute name="city" use="required" type="{http://www.w3.org/2001/XMLSchema}IDREF" /&gt;
+ *       &lt;attribute name="email" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -35,14 +35,11 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "email",
     "fullName"
 })
 @XmlRootElement(name = "User", namespace = "http://javaops.ru")
 public class User {
 
-    @XmlElement(namespace = "http://javaops.ru", required = true)
-    protected String email;
     @XmlElement(namespace = "http://javaops.ru", required = true)
     protected String fullName;
     @XmlAttribute(name = "flag", required = true)
@@ -51,30 +48,8 @@ public class User {
     @XmlIDREF
     @XmlSchemaType(name = "IDREF")
     protected Object city;
-
-    /**
-     * Gets the value of the email property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * Sets the value of the email property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEmail(String value) {
-        this.email = value;
-    }
+    @XmlAttribute(name = "email", required = true)
+    protected String email;
 
     /**
      * Gets the value of the fullName property.
@@ -146,6 +121,30 @@ public class User {
      */
     public void setCity(Object value) {
         this.city = value;
+    }
+
+    /**
+     * Gets the value of the email property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets the value of the email property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEmail(String value) {
+        this.email = value;
     }
 
 }
