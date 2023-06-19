@@ -40,6 +40,7 @@
             <xs:attribute type="flagType" name="flag" use="required"/>
             <xs:attribute type="xs:IDREF" name="city" use="required"/>
             <xs:attribute type="xs:string" name="email" use="required"/>
+            <xs:attribute type="xs:IDREFS" name="groupTypeRefs" use="optional"/>
         </xs:complexType>
     </xs:element>
 

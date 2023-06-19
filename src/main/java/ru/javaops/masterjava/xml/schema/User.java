@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,6 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="flag" use="required" type="{http://javaops.ru}flagType" /&gt;
  *       &lt;attribute name="city" use="required" type="{http://www.w3.org/2001/XMLSchema}IDREF" /&gt;
  *       &lt;attribute name="email" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="groupTypeRefs" type="{http://www.w3.org/2001/XMLSchema}IDREFS" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -50,6 +53,10 @@ public class User {
     protected Object city;
     @XmlAttribute(name = "email", required = true)
     protected String email;
+    @XmlAttribute(name = "groupTypeRefs")
+    @XmlIDREF
+    @XmlSchemaType(name = "IDREFS")
+    protected List<Object> groupTypeRefs;
 
     /**
      * Gets the value of the fullName property.
@@ -145,6 +152,35 @@ public class User {
      */
     public void setEmail(String value) {
         this.email = value;
+    }
+
+    /**
+     * Gets the value of the groupTypeRefs property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a <CODE>set</CODE> method for the groupTypeRefs property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getGroupTypeRefs().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Object }
+     * 
+     * 
+     */
+    public List<Object> getGroupTypeRefs() {
+        if (groupTypeRefs == null) {
+            groupTypeRefs = new ArrayList<Object>();
+        }
+        return this.groupTypeRefs;
     }
 
 }
