@@ -1,6 +1,6 @@
 <Payload xmlns="http://javaops.ru"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://javaops.ru payload.xsd">
+         xsi:schemaLocation="http://javaops.ru ../../../../test/src/main/resources/payload.xsd">
 
     <Projects>
         <Project name="topjava">
