@@ -12,6 +12,5 @@
         <module>common-web</module>
         <module>upload</module>
         <module>webapp</module>
-        <module>common-web</module>
     </modules>
 </project>
