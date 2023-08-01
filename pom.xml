@@ -16,9 +16,11 @@
         <module>parent-web</module>
 
         <module>common</module>
+        <module>persist</module>
         <module>test</module>
 
         <module>web</module>
         <module>services</module>
+        <module>persist</module>
     </modules>
 </project>
