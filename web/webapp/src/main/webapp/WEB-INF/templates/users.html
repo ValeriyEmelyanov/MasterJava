@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Full name</th>
+    <th>Email</th>
+    <th>Flag</th>
+  </tr>
+  </thead>
+  <tr th:each="user,iter: ${users}">
+    <td th:text="${iter.count}"></td>
+    <td th:text="${user.fullName}"></td>
+    <td th:text="${user.email}"></td>
+    <td th:text="${user.flag}"></td>
+  </tr>
+</table>
+</body>
+</html>
