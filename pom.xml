@@ -16,7 +16,6 @@
         <module>parent-web</module>
 
         <module>common</module>
-        <module>persist</module>
         <module>test</module>
 
         <module>web</module>
