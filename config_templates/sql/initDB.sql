@@ -14,3 +14,24 @@ CREATE TABLE users (
 );
 
 CREATE UNIQUE INDEX email_idx ON users (email);
+
+
+DROP TABLE IF EXISTS city;
+DROP TABLE IF EXISTS user_group;
+DROP TABLE IF EXISTS project;
+
+CREATE TABLE city (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL
+);
+
+CREATE TABLE groups (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL UNIQUE
+);
+
+CREATE TABLE project (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL UNIQUE,
+  description TEXT
+);
